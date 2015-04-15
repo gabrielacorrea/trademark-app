@@ -1345,7 +1345,7 @@ mark,
   color: #337ab7;
 }
 a.text-primary:hover {
-  color: #286090;
+  color: #000000;
 }
 .text-success {
   color: #3c763d;
@@ -1376,7 +1376,7 @@ a.text-danger:hover {
   background-color: #337ab7;
 }
 a.bg-primary:hover {
-  background-color: #286090;
+  background-color: #000000;
 }
 .bg-success {
   background-color: #dff0d8;
