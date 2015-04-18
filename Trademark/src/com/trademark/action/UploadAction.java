@@ -1,11 +1,11 @@
 package com.trademark.action;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.trademark.bean.MarcaBean;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.opensymphony.xwork2.ActionSupport;
-import com.trademark.bean.MarcaBean;
 
 public class UploadAction extends ActionSupport {
 
@@ -54,8 +54,8 @@ public class UploadAction extends ActionSupport {
 	public String save() {
 		String path = "";
 		int idUsuario = 1;
-		
-		if(!existeDiretorioParaUsuario()){
+
+        if(!existeDiretorioParaUsuario()){
 			 path = criarDiretorio(idUsuario);
 		}else{
 			path = PATH_USER+"/"+idUsuario;
@@ -70,13 +70,13 @@ public class UploadAction extends ActionSupport {
 	}
 
 	private String criarDiretorio(int idUser) {
-		File f = new File("/opt/Trademark/user/"+idUser);
+		File f = new File(PATH_USER+idUser);
 		f.mkdirs();
 		return f.getPath();
 	}
 
 	private boolean existeDiretorioParaUsuario() {
-		File f = new File("/opt/Trademark/user");
+		File f = new File(PATH_USER);
 		if(f.isDirectory()){
 			return true;
 		}
