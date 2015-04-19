@@ -1,9 +1,11 @@
 body {
-  padding-top: 50px;
+    padding-top: 50px;
+    padding-bottom: 40px;
 }
+
 .universal-template {
-  padding: 40px 15px;
-  text-align: center;
+    padding: 40px 15px;
+    text-align: center;
 }
 
 .form-postagem {
