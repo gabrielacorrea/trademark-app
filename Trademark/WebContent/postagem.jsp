@@ -80,6 +80,21 @@
                 <input type="file" class="form-postagem" name="upload" id="upload"/>
             </div>
             <br/>
+            <h4 class="form-postagem">Loja:</h4>
+            <select name="loja" class="form-postagem">
+                <option>Selecione...</option>
+                <option>Paquetá</option>
+                <option>Renner</option>
+            </select>
+            <br/>
+            <h4 class="form-postagem">Tipo de produto:</h4>
+            <select name="tipoProduto" class="form-postagem">
+                <option>Selecione...</option>
+                <option>Vestuário</option>
+                <option>Calçado</option>
+                <option>Acessórios</option>
+            </select>
+            <br/>
             <h4 class="form-postagem">Escolha uma marca:</h4>
             <select name="marcaSelecionada" class="form-postagem">
                 <option>Selecione...</option>
