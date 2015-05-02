@@ -34,4 +34,34 @@ public class PostagemDao {
         }
         return list;
     }
+
+    public void inserePostagem() {
+        Connection connection = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
+            String sqlInsert = "insert into postagens values(1, current_timestamp, 'descricao a', '/Users/gcorrea/Faculdade/projeto-desenvolvimento/trademark-app/Trademark/WebContent/imagens/1' ,'calcado', 1, 1, 1)";
+
+            PreparedStatement stmt = connection.prepareStatement(sqlInsert);
+
+            /*
+            stmt.setString(1, 1);
+            stmt.setString(2, usuario.getSenha());
+            stmt.setString(3, usuario.getTipo());
+            stmt.setString(4, usuario.getNome());
+            stmt.setString(5, usuario.getEmail());
+            stmt.setString(6, usuario.getTelefone());
+            stmt.setString(7, usuario.getEndereco());
+            */
+
+            stmt.execute();
+            stmt.close();
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

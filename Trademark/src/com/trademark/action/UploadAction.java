@@ -67,9 +67,10 @@ public class UploadAction extends ActionSupport {
 		file.renameTo(dest);
 		
 		setSaved(true);
-        PostagemDao dao = new PostagemDao();
-        System.out.println(dao.pesquisarPostagens());
+        System.out.println("caminho do arquivo: " + dest);
 
+        PostagemDao dao = new PostagemDao();
+        dao.inserePostagem();
 		return SUCCESS;
 	}
 
