@@ -72,7 +72,7 @@
     <div class="universal-template postagem">
         <input type="hidden" value="<s:property value='saved'/>" id="isSaved">
 
-        <s:form action="save_postagem" enctype="multipart/form-data">
+        <s:form action="save_postagem" enctype="multipart/form-data" namespace="/">
             <h2 class="form-contact-heading">Postar uma oferta</h2>
 
             <div>
@@ -80,6 +80,7 @@
                 <input type="file" class="form-postagem" name="upload" id="upload"/>
             </div>
             <br/>
+            <!--
             <h4 class="form-postagem">Loja:</h4>
             <select name="loja" class="form-postagem">
                 <option>Selecione...</option>
@@ -95,6 +96,7 @@
                 <option>Acessórios</option>
             </select>
             <br/>
+            -->
             <h4 class="form-postagem">Escolha uma marca:</h4>
             <select name="marcaSelecionada" class="form-postagem">
                 <option>Selecione...</option>

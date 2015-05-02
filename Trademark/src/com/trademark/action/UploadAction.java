@@ -2,6 +2,7 @@ package com.trademark.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.trademark.bean.MarcaBean;
+import dao.PostagemDao;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ public class UploadAction extends ActionSupport {
 	private File file;
 	private String contentType;
 	private String filename;
-	private final static String PATH_USER = "/opt/Trademark/user";
+    private String sendFile;
+	private final static String PATH_USER = "/Users/gcorrea/Faculdade/projeto-desenvolvimento/trademark-app/Trademark/WebContent/imagens";
 	private List<MarcaBean> listaMarcas;
 	private String marcaSelecionada;
 	private boolean saved = false;
@@ -38,7 +40,7 @@ public class UploadAction extends ActionSupport {
 	
 	public String open(){
 		setUp();
-				
+
 		return SUCCESS;
 	}
 	private List<MarcaBean> recuperarListaMarcas(List<MarcaBean> list) {
@@ -64,13 +66,15 @@ public class UploadAction extends ActionSupport {
 		File dest = new File(path, filename);
 		file.renameTo(dest);
 		
-		setUp();
 		setSaved(true);
+        PostagemDao dao = new PostagemDao();
+        System.out.println(dao.pesquisarPostagens());
+
 		return SUCCESS;
 	}
 
 	private String criarDiretorio(int idUser) {
-		File f = new File(PATH_USER+idUser);
+		File f = new File(PATH_USER+"/"+idUser);
 		f.mkdirs();
 		return f.getPath();
 	}
@@ -114,7 +118,4 @@ public class UploadAction extends ActionSupport {
 	public void setSaved(boolean saved) {
 		this.saved = saved;
 	}
-	
-	
-
 }

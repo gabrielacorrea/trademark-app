@@ -7,27 +7,22 @@
 
 	<constant name="struts.devMode" value="true" />
 
-	<package name="test" extends="struts-default">
-
+	<package name="test" namespace="/" extends="struts-default">
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
 
-		<action name="test"
-			class="com.trademark.test.MyTestAction" method="guilherme">
+		<action name="test" class="com.trademark.test.MyTestAction" method="guilherme">
 			<result name="success">/test.jsp</result>
 		</action>
 		
-		<action name="save_postagem"
-			class="com.trademark.action.UploadAction" method="save">
+		<action name="save_postagem" class="com.trademark.action.UploadAction" method="save">
 			<result name="success">/postagem.jsp</result>
 		</action>
 		
-		<action name="open_postagem"
-			class="com.trademark.action.UploadAction" method="open">
+		<action name="open_postagem" class="com.trademark.action.UploadAction" method="open">
 			<result name="success">/postagem.jsp</result>
 		</action>
-
 	</package>
 
 </struts>
