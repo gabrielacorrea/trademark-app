@@ -70,7 +70,9 @@ public class UploadAction extends ActionSupport {
         System.out.println("caminho do arquivo: " + dest);
 
         PostagemDao dao = new PostagemDao();
-        dao.inserePostagem();
+        System.out.println("lojas: " + dao.selecaoLojas().get(0).getNome());
+
+        //dao.inserePostagem();
 		return SUCCESS;
 	}
 

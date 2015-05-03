@@ -35,6 +35,39 @@ public class PostagemDao {
         return list;
     }
 
+    public ArrayList<LojaBean> selecaoLojas() {
+        Connection connection = null;
+        ArrayList<LojaBean> lojas = new ArrayList<>();
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
+            Statement st = connection.createStatement();
+            String sql = "Select * from lojas order by nome";
+            ResultSet rs = st.executeQuery(sql);
+
+
+            while (rs.next()) {
+                LojaBean bean = new LojaBean();
+                bean.setId(rs.getInt("id"));
+                bean.setNome(rs.getString("nome"));
+                bean.setDescricao(rs.getString("descricao"));
+                bean.setEndereco(rs.getString("endereco"));
+                bean.setNumero(rs.getInt("numero"));
+                bean.setBairro(rs.getString("bairro"));
+                lojas.add(bean);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return lojas;
+    }
+
+
+
     public void inserePostagem() {
         Connection connection = null;
 
