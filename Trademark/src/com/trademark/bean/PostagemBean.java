@@ -1,4 +1,4 @@
-package dao;
+package com.trademark.bean;
 
 import java.sql.Timestamp;
 

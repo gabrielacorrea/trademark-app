@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
 
-	<constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="true"/>
 
-	<package name="test" namespace="/" extends="struts-default">
-		<action name="index">
-			<result>/index.jsp</result>
-		</action>
+    <package name="test" namespace="/" extends="struts-default">
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
 
-		<action name="test" class="com.trademark.test.MyTestAction" method="guilherme">
-			<result name="success">/test.jsp</result>
-		</action>
-		
-		<action name="save_postagem" class="com.trademark.action.UploadAction" method="save">
-			<result name="success">/postagem.jsp</result>
-		</action>
-		
-		<action name="open_postagem" class="com.trademark.action.UploadAction" method="open">
-			<result name="success">/postagem.jsp</result>
-		</action>
+        <action name="test" class="com.trademark.test.MyTestAction" method="guilherme">
+            <result name="success">/test.jsp</result>
+        </action>
+
+        <action name="save_postagem" class="com.trademark.action.UploadAction" method="save">
+            <result name="success">/postagem.jsp</result>
+        </action>
+
+        <action name="open_postagem" class="com.trademark.action.UploadAction" method="open">
+            <result name="success">/postagem.jsp</result>
+        </action>
 
         <action name="selectLojas"
-                class="dao.LojaBean" method="mostraLojas">
+                class="com.trademark.bean.LojaBean" method="mostraLojas">
             <result name="none">/postagem.jsp</result>
         </action>
 
-	</package>
+    </package>
 
 </struts>

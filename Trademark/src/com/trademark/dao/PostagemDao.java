@@ -1,4 +1,8 @@
-package dao;
+package com.trademark.dao;
+
+import com.trademark.bean.LojaBean;
+import com.trademark.bean.MarcaBean;
+import com.trademark.bean.PostagemBean;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,6 +12,7 @@ public class PostagemDao {
     public ArrayList<PostagemBean> pesquisarPostagens() {
         Connection connection = null;
         ArrayList<PostagemBean> list = new ArrayList<PostagemBean>();
+
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
@@ -26,7 +31,6 @@ public class PostagemDao {
                 list.add(bean);
             }
             connection.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -46,7 +50,6 @@ public class PostagemDao {
             String sql = "Select * from lojas order by nome";
             ResultSet rs = st.executeQuery(sql);
 
-
             while (rs.next()) {
                 LojaBean bean = new LojaBean();
                 bean.setId(rs.getInt("id"));
@@ -57,7 +60,6 @@ public class PostagemDao {
                 bean.setBairro(rs.getString("bairro"));
                 lojas.add(bean);
             }
-
             rs.close();
             st.close();
             connection.close();
@@ -69,26 +71,50 @@ public class PostagemDao {
         return lojas;
     }
 
+    public ArrayList<MarcaBean> selecaoMarcas() {
+        Connection connection = null;
+        ArrayList<MarcaBean> marcas = new ArrayList<>();
 
-    public void inserePostagem() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
+            Statement st = connection.createStatement();
+            String sql = "Select * from marcas order by nome";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                MarcaBean bean = new MarcaBean();
+                bean.setId(rs.getInt("id"));
+                bean.setNome(rs.getString("nome"));
+                bean.setDescricao(rs.getString("descricao"));
+                marcas.add(bean);
+            }
+            rs.close();
+            st.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return marcas;
+    }
+
+    public void inserePostagem(String descricao, String imagem, String tipoProduto, int loja, int marca) {
         Connection connection = null;
 
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
-            String sqlInsert = "insert into postagens values(1, current_timestamp, 'descricao a', '/Users/gcorrea/Faculdade/projeto-desenvolvimento/trademark-app/Trademark/WebContent/imagens/1' ,'calcado', 1, 1, 1)";
+            String sqlInsert = "insert into postagens (data_inicial, descricao, imagem, tipo_vestuario, id_loja, id_marca, id_usuario)  " +
+            "values(current_timestamp, ?, ? , ?, ?, ?, 1)";
 
             PreparedStatement stmt = connection.prepareStatement(sqlInsert);
-
-            /*
-            stmt.setString(1, 1);
-            stmt.setString(2, usuario.getSenha());
-            stmt.setString(3, usuario.getTipo());
-            stmt.setString(4, usuario.getNome());
-            stmt.setString(5, usuario.getEmail());
-            stmt.setString(6, usuario.getTelefone());
-            stmt.setString(7, usuario.getEndereco());
-            */
+            stmt.setString(1, descricao);
+            stmt.setString(2, imagem);
+            stmt.setString(3, tipoProduto);
+            stmt.setInt(4, loja);
+            stmt.setInt(5, marca);
 
             stmt.execute();
             stmt.close();

@@ -20,19 +20,28 @@
         $(document).submit(function () {
             var validate = true;
             if (!$('#upload').val()) {
-                validate = false;
                 alert("Escolha uma imagem!");
+                return false;
             } else if (invalidExtension($('#upload').val())) {
-                validate = false;
                 alert("Ops!... tipo de arquivo invalido.");
                 $('#upload').val("");
+                return false;
             } else if ($('#upload')[0].files[0].size > 2097152) {
-                validate = false;
                 alert("Excedeu tamanho maximo permitido(2mb).");
                 $('#upload').val("");
+                return false;
             }
 
-            return validate;
+            if(!$('#tipoProduto').val()) {
+                alert("O campo tipo de produto é obrigatório e deve ser preenchido.");
+                return false;
+            } else if (!$('#loja').val()) {
+                alert("O campo loja é obrigatório e deve ser preenchido");
+                return false;
+            } else if (!$('#marca').val()) {
+                alert("O campo marca é obrigatório e deve ser preenchido");
+                return false;
+            }
         });
 
         function invalidExtension(file) {
@@ -80,33 +89,25 @@
                 <input type="file" class="form-postagem" name="upload" id="upload"/>
             </div>
             <br/>
-
             <div>
-                <h4>
-                    <h4>Loja: </h4>
-                    <s:select list="lojas" name="loja" />
-                </h4>
+                <h4 class="form-postagem">Tipo de produto:</h4>
+                <s:textarea name="tipoProduto" id="tipoProduto"/>
             </div>
-
-            <!--
+            <br>
+            <div>
+                <h4 class="form-postagem">Descrição:</h4>
+                <s:textarea name="descricao"/>
+            </div>
+            <br>
+            <div>
+                <h4 class="form-postagem">Loja:</h4>
+                <s:select list="lojas" name="lojaSelecionada" id="loja"/>
+            </div>
             <br/>
-            <h4 class="form-postagem">Tipo de produto:</h4>
-            <select name="tipoProduto" class="form-postagem">
-                <option>Selecione...</option>
-                <option>Vestuário</option>
-                <option>Calçado</option>
-                <option>Acessórios</option>
-            </select>
-            <br/>
-            -->
-            <h4 class="form-postagem">Escolha uma marca:</h4>
-            <select name="marcaSelecionada" class="form-postagem">
-                <option>Selecione...</option>
-                <s:iterator value="listaMarcas">
-                    <option><s:property value="nome"/></option>
-                </s:iterator>
-            </select>
-            <br/>
+            <div>
+                <h4 class="form-postagem">Marca:</h4>
+                <s:select list="marcas" name="marcaSelecionada" id="marca"/>
+            </div>
             <br/>
             <input type="submit" name="sendFile" value="Enviar">
         </s:form>

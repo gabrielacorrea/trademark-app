@@ -35,11 +35,13 @@
 <div id="headerContent"></div>
 <div class="container">
     <div class="mainscreen-template">
-    <s:form action="open_postagem" namespace="/">
-        <input type="submit" name="sendFile" value="Ir para Upload">
-    </s:form>
+        <s:form action="open_postagem" namespace="/">
+            <input type="submit" name="sendFile" value="Ir para Upload">
+        </s:form>
         <h2><a href="postagem.jsp">Postar!</a></h2>
+
         <h2><a href="#">O que você procura?</a></h2>
+
         <h2><a href="#">Editar o seu perfil.</a></h2>
     </div>
 </div>
