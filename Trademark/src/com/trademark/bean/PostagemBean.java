@@ -5,10 +5,15 @@ import java.sql.Timestamp;
 public class PostagemBean {
     private int id;
     private Timestamp dataInicial;
+    private String dataFormatada;
     private String descricao;
     private int idLoja;
     private int idMarca;
     private String imgPath;
+    private String tipoVestuario;
+    private String postadoPor;
+    private String marca;
+    private String loja;
 
     public void setId(int id) {
         this.id = id;
@@ -56,5 +61,45 @@ public class PostagemBean {
 
     public String getImgPath() {
         return imgPath;
+    }
+
+    public String getTipoVestuario() {
+        return tipoVestuario;
+    }
+
+    public void setTipoVestuario(String tipoVestuario) {
+        this.tipoVestuario = tipoVestuario;
+    }
+
+    public String getDataFormatada() {
+        return dataFormatada;
+    }
+
+    public void setDataFormatada(String dataFormatada) {
+        this.dataFormatada = dataFormatada;
+    }
+
+    public String getPostadoPor() {
+        return postadoPor;
+    }
+
+    public void setPostadoPor(String postadoPor) {
+        this.postadoPor = postadoPor;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getLoja() {
+        return loja;
+    }
+
+    public void setLoja(String loja) {
+        this.loja = loja;
     }
 }

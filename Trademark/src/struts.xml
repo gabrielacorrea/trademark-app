@@ -7,13 +7,15 @@
 
     <constant name="struts.devMode" value="true"/>
 
-    <package name="test" namespace="/" extends="struts-default">
+    <package name="default" namespace="/" extends="struts-default">
+
         <action name="index">
-            <result>/index.jsp</result>
+            <result name="success">/index.jsp</result>
         </action>
 
-        <action name="test" class="com.trademark.test.MyTestAction" method="guilherme">
-            <result name="success">/test.jsp</result>
+        <action name="open_postagens" class="com.trademark.action.SearchPostsAction"
+                method="open">
+            <result name="success">/postagem_pesquisa.jsp</result>
         </action>
 
         <action name="save_postagem" class="com.trademark.action.UploadAction" method="save">
@@ -27,6 +29,17 @@
         <action name="selectLojas"
                 class="com.trademark.bean.LojaBean" method="mostraLojas">
             <result name="none">/postagem.jsp</result>
+        </action>
+
+        <action name="search_postagens" class="com.trademark.action.SearchPostsAction"
+                method="search">
+            <result name="success">/postagem_pesquisa.jsp</result>
+        </action>
+
+        <action name="ImageAction" class="com.trademark.action.ImageAction"
+                method="getCustomImageInBytes">
+            <result name="success">
+            </result>
         </action>
 
     </package>

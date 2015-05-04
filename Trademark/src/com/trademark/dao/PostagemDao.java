@@ -12,31 +12,109 @@ public class PostagemDao {
     public ArrayList<PostagemBean> pesquisarPostagens() {
         Connection connection = null;
         ArrayList<PostagemBean> list = new ArrayList<PostagemBean>();
-
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/trademark_db",
+                    "postgres", "112233");
+
             Statement st = connection.createStatement();
-            String sql = "Select * from postagens order by 1";
+
+            String sql = "SELECT a.data_inicial, a.descricao, a.imagem,"
+                    + " b.nome AS marca,"
+                    + " c.nome AS loja,"
+                    + " d.nome AS postado_por,"
+                    + " e.tipo"
+                    + " FROM postagens a"
+                    + " JOIN marcas b ON a.id_marca = b.id"
+                    + " JOIN lojas c ON a.id_loja = c.id"
+                    + " JOIN usuarios d ON a.id_usuario = d.id"
+                    + " JOIN tipo_vestuario e on a.tipo_vestuario = e.id"
+                    + " ORDER BY data_inicial desc"
+                    + " LIMIT 10";
+
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
                 PostagemBean bean = new PostagemBean();
-                bean.setId(rs.getInt("id"));
+                bean.setLoja(rs.getString("loja"));
+                bean.setMarca(rs.getString("marca"));
+                bean.setPostadoPor(rs.getString("postado_por"));
+                bean.setTipoVestuario(rs.getString("tipo"));
                 bean.setDataInicial(rs.getTimestamp("data_inicial"));
                 bean.setDescricao(rs.getString("descricao"));
-                bean.setIdLoja(rs.getInt("id_loja"));
-                bean.setIdMarca(rs.getInt("id_marca"));
                 bean.setImgPath(rs.getString("imagem"));
                 list.add(bean);
             }
+
             connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         return list;
+
+    }
+
+    public ArrayList<PostagemBean> pesquisarComFiltros(int marca, int tipo, int loja) {
+        Connection connection = null;
+        ArrayList<PostagemBean> postagens = new ArrayList<PostagemBean>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/trademark_db",
+                    "postgres", "112233");
+
+            Statement st = connection.createStatement();
+
+            String sql = "SELECT a.data_inicial, a.descricao, a.imagem,"
+                    + " b.nome AS marca,"
+                    + " c.nome AS loja,"
+                    + " d.nome AS postado_por,"
+                    + " e.tipo"
+                    + " FROM postagens a"
+                    + " JOIN marcas b ON a.id_marca = b.id"
+                    + " JOIN lojas c ON a.id_loja = c.id"
+                    + " JOIN usuarios d ON a.id_usuario = d.id"
+                    + " JOIN tipo_vestuario e on a.tipo_vestuario = e.id"
+                    + " WHERE 1 = 1";
+
+            if (marca != -1) {
+                sql = sql + " and a.id_marca = " + marca;
+            }
+            if (loja != -1) {
+                sql = sql + " and a.id_loja = " + loja;
+            }
+            if (tipo != -1) {
+                sql = sql + " and a.tipo_vestuario = " + tipo;
+            }
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                PostagemBean bean = new PostagemBean();
+                bean.setLoja(rs.getString("loja"));
+                bean.setMarca(rs.getString("marca"));
+                bean.setPostadoPor(rs.getString("postado_por"));
+                bean.setTipoVestuario(rs.getString("tipo"));
+                bean.setDataInicial(rs.getTimestamp("data_inicial"));
+                bean.setDescricao(rs.getString("descricao"));
+                bean.setImgPath(rs.getString("imagem"));
+                postagens.add(bean);
+            }
+
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return postagens;
     }
 
     public ArrayList<LojaBean> selecaoLojas() {

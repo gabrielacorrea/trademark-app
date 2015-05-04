@@ -1,3 +1,5 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -8,14 +10,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="trademark.html">TradeMark</a>
+            <a class="navbar-brand" href="/Trademark">TradeMark</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="aboutus.html">Sobre nós</a></li>
-                <li><a href="contact.html">Contate-nos</a></li>
-                <li><a href="postagem.jsp">Nova postagem</a></li>
+                <li><a href="<s:url action='open_postagem'/>">Nova postagem</a></li>
+                <li><a href="aboutus.html">Sobre</a></li>
+                <li><a href="contact.html">Contato</a></li>
             </ul>
         </div>
     </div>

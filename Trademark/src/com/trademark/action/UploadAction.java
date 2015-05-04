@@ -16,7 +16,7 @@ public class UploadAction extends ActionSupport {
     private File file;
     private String contentType;
     private String filename;
-    private final static String PATH_USER = "/Users/gcorrea/Faculdade/projeto-desenvolvimento/trademark-app/Trademark/WebContent/imagens";
+    private final static String PATH_USER = "/opt/Trademark/user";
     private Map<Integer, String> marcas = new HashMap<>();
     private Map<Integer, String> lojas = new HashMap<>();
     private int marcaSelecionada;
@@ -143,5 +143,9 @@ public class UploadAction extends ActionSupport {
 
     public String getTipoProduto() {
         return tipoProduto;
+    }
+
+    public void setUploadContentType(String contentType) {
+        this.setContentType(contentType);
     }
 }

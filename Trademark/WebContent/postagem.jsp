@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<s:include value="header.jsp"></s:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/universal-template.css" rel="stylesheet">
-    <script type="text/javascript" src="resources/js/html5shiv.min.js"></script>
-    <script type="text/javascript" src="resources/js/respond.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery-1.11.2.min.js"></script>
 
     <script type="text/javascript">
