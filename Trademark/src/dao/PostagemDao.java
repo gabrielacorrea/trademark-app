@@ -57,6 +57,9 @@ public class PostagemDao {
                 bean.setBairro(rs.getString("bairro"));
                 lojas.add(bean);
             }
+
+            rs.close();
+            st.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,7 +68,6 @@ public class PostagemDao {
         }
         return lojas;
     }
-
 
 
     public void inserePostagem() {

@@ -1,6 +1,8 @@
 package dao;
 
-public class LojaBean {
+import com.opensymphony.xwork2.ActionSupport;
+
+public class LojaBean extends ActionSupport{
     private int id;
     private String nome;
     private String descricao;
@@ -8,6 +10,9 @@ public class LojaBean {
     private int numero;
     private String bairro;
 
+    public String mostraLojas() {
+        return NONE;
+    }
     public void setId(int id) {
         this.id = id;
     }

@@ -80,13 +80,15 @@
                 <input type="file" class="form-postagem" name="upload" id="upload"/>
             </div>
             <br/>
+
+            <div>
+                <h4>
+                    <h4>Loja: </h4>
+                    <s:select list="lojas" name="loja" />
+                </h4>
+            </div>
+
             <!--
-            <h4 class="form-postagem">Loja:</h4>
-            <select name="loja" class="form-postagem">
-                <option>Selecione...</option>
-                <option>Paquetá</option>
-                <option>Renner</option>
-            </select>
             <br/>
             <h4 class="form-postagem">Tipo de produto:</h4>
             <select name="tipoProduto" class="form-postagem">

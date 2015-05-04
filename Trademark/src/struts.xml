@@ -23,6 +23,12 @@
 		<action name="open_postagem" class="com.trademark.action.UploadAction" method="open">
 			<result name="success">/postagem.jsp</result>
 		</action>
+
+        <action name="selectLojas"
+                class="dao.LojaBean" method="mostraLojas">
+            <result name="none">/postagem.jsp</result>
+        </action>
+
 	</package>
 
 </struts>
