@@ -29,7 +29,7 @@
                 return false;
             }
 
-            if(!$('#tipoProduto').val()) {
+            if(!$('#tipo').val()) {
                 alert("O campo tipo de produto é obrigatório e deve ser preenchido.");
                 return false;
             } else if (!$('#loja').val()) {
@@ -88,22 +88,39 @@
             <br/>
             <div>
                 <h4 class="form-postagem">Tipo de produto:</h4>
-                <s:textarea name="tipoProduto" id="tipoProduto"/>
+                <%--<s:select list="tipos" name="tipoSelecionado" id="tipo"/>--%>
+                <select name="tipoSelecionado" id="tipo">
+                    <option value="-1">Selecione...</option>
+                    <s:iterator value="tipos">
+                        <option value="<s:property value="id" />"><s:property value="tipo"/></option>
+                    </s:iterator>
+                </select>
+                <br/>
             </div>
             <br>
             <div>
                 <h4 class="form-postagem">Descrição:</h4>
-                <s:textarea name="descricao"/>
+                <textarea rows="3" cols="5" name="descricao"></textarea>
             </div>
             <br>
             <div>
                 <h4 class="form-postagem">Loja:</h4>
-                <s:select list="lojas" name="lojaSelecionada" id="loja"/>
+                <select name="lojaSelecionada">
+                    <option value="-1" id="loja">Selecione...</option>
+                    <s:iterator value="lojas">
+                        <option value="<s:property value="id" />"><s:property value="nome"/></option>
+                    </s:iterator>
+                </select><br/>
             </div>
             <br/>
             <div>
                 <h4 class="form-postagem">Marca:</h4>
-                <s:select list="marcas" name="marcaSelecionada" id="marca"/>
+                <select name="marcaSelecionada" id="marca">
+                    <option value="-1">Selecione...</option>
+                    <s:iterator value="marcas">
+                        <option value="<s:property value="id" />"><s:property value="nome"/></option>
+                    </s:iterator>
+                </select>
             </div>
             <br/>
             <input type="submit" name="sendFile" value="Enviar">

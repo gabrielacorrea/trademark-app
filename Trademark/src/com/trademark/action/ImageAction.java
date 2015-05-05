@@ -39,7 +39,7 @@ public class ImageAction extends ActionSupport {
             originalImage = ImageIO.read(getImageFile(this.imagePath));
             // convert BufferedImage to byte array
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(originalImage, "jpg", baos);
+            ImageIO.write(originalImage, "jpeg", baos);
             baos.flush();
             imageInByte = baos.toByteArray();
             baos.close();
@@ -60,5 +60,6 @@ public class ImageAction extends ActionSupport {
         File file = new File(imgPath);
         return file;
     }
+
 
 }

@@ -3,11 +3,14 @@ package com.trademark.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.trademark.bean.LojaBean;
 import com.trademark.bean.MarcaBean;
+import com.trademark.bean.TipoVestuarioBean;
+import com.trademark.dao.LojaDAO;
+import com.trademark.dao.MarcaDAO;
 import com.trademark.dao.PostagemDao;
+import com.trademark.dao.TipoVestuarioDAO;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class UploadAction extends ActionSupport {
 
@@ -17,13 +20,38 @@ public class UploadAction extends ActionSupport {
     private String contentType;
     private String filename;
     private final static String PATH_USER = "/opt/Trademark/user";
-    private Map<Integer, String> marcas = new HashMap<>();
-    private Map<Integer, String> lojas = new HashMap<>();
+
+    public List<MarcaBean> getMarcas() {
+        return marcas;
+    }
+
+    public void setMarcas(List<MarcaBean> marcas) {
+        this.marcas = marcas;
+    }
+
+    private List<MarcaBean> marcas;
+
+    public List<LojaBean> getLojas() {
+        return lojas;
+    }
+
+    public void setLojas(List<LojaBean> lojas) {
+        this.lojas = lojas;
+    }
+
+    private List<LojaBean> lojas;
+    private List<TipoVestuarioBean> tipos;
     private int marcaSelecionada;
     private int lojaSelecionada;
+    private int tipoSelecionado;
     private boolean saved = false;
     private String descricao;
     private String tipoProduto;
+
+    public String open() {
+        montarSelects();
+        return SUCCESS;
+    }
 
     public void setUpload(File file) {
         this.file = file;
@@ -31,17 +59,6 @@ public class UploadAction extends ActionSupport {
 
     public void setUploadFileName(String filename) {
         this.filename = filename;
-    }
-
-    public void setUp() {
-        setLojas();
-        setMarcas();
-    }
-
-    public String open() {
-        setUp();
-
-        return SUCCESS;
     }
 
     public String save() {
@@ -59,8 +76,23 @@ public class UploadAction extends ActionSupport {
 
         setSaved(true);
         System.out.println(dest.getPath());
-        dao.inserePostagem(this.descricao, dest.getPath(), this.tipoProduto, this.lojaSelecionada, this.marcaSelecionada);
+        dao.inserePostagem(this.descricao, dest.getPath(), this.tipoSelecionado, this.lojaSelecionada, this.marcaSelecionada);
         return SUCCESS;
+    }
+
+    public List<TipoVestuarioBean> getTipos() {
+        return tipos;
+    }
+
+    public void setTipos(List<TipoVestuarioBean> tipos) {
+        this.tipos = tipos;
+    }
+
+    public void montarSelects() {
+        // Monta os combos de pesquisa da tela.
+        setMarcas(new MarcaDAO().pesquisarMarcas());
+        setTipos(new TipoVestuarioDAO().pesquisarTipoVestuario());
+        setLojas(new LojaDAO().pesquisarLojas());
     }
 
     private String criarDiretorio(int idUser) {
@@ -109,26 +141,6 @@ public class UploadAction extends ActionSupport {
         return lojaSelecionada;
     }
 
-    public Map<Integer, String> getLojas() {
-        return lojas;
-    }
-
-    private void setLojas() {
-        for (LojaBean loja : dao.selecaoLojas()) {
-            this.lojas.put(loja.getId(), loja.getNome());
-        }
-    }
-
-    private void setMarcas() {
-        for (MarcaBean marca : dao.selecaoMarcas()) {
-            this.marcas.put(marca.getId(), marca.getNome());
-        }
-    }
-
-    public Map<Integer, String> getMarcas() {
-        return marcas;
-    }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -148,4 +160,14 @@ public class UploadAction extends ActionSupport {
     public void setUploadContentType(String contentType) {
         this.setContentType(contentType);
     }
+
+    public void setTipoSelecionado(int tipoSelecionado) {
+        this.tipoSelecionado = tipoSelecionado;
+    }
+
+    public int getTipoSelecionado() {
+        return tipoSelecionado;
+    }
+
+
 }

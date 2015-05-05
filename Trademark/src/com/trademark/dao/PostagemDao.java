@@ -178,19 +178,19 @@ public class PostagemDao {
         return marcas;
     }
 
-    public void inserePostagem(String descricao, String imagem, String tipoProduto, int loja, int marca) {
+    public void inserePostagem(String descricao, String imagem, int tipoProduto, int loja, int marca) {
         Connection connection = null;
 
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
-            String sqlInsert = "insert into postagens (data_inicial, descricao, imagem, tipo_vestuario, id_loja, id_marca, id_usuario)  " +
-            "values(current_timestamp, ?, ? , ?, ?, ?, 1)";
+            String sqlInsert = "insert into postagens (id, data_inicial, descricao, imagem, tipo_vestuario, id_loja, id_marca, id_usuario) " +
+            "values(nextval('id_postagens'), current_timestamp, ?, ? , ?, ?, ?, 1)";
 
             PreparedStatement stmt = connection.prepareStatement(sqlInsert);
             stmt.setString(1, descricao);
             stmt.setString(2, imagem);
-            stmt.setString(3, tipoProduto);
+            stmt.setInt(3, tipoProduto);
             stmt.setInt(4, loja);
             stmt.setInt(5, marca);
 
