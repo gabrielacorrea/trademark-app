@@ -25,7 +25,6 @@ public class ImageAction extends ActionSupport {
     }
 
     public ImageAction() {
-        System.out.println("ImageAction");
     }
 
     public String execute() {
