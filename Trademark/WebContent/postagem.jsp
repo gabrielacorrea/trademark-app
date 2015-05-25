@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <s:include value="header.jsp"></s:include>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-    <script type="text/javascript" src="resources/js/jquery-1.11.2.min.js"></script>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Trademark</title>
     <script type="text/javascript">
         $(document).ready(function () {
             if ($('#isSaved').val() == "true") {
@@ -29,7 +29,7 @@
                 return false;
             }
 
-            if(!$('#tipo').val()) {
+            if (!$('#tipo').val()) {
                 alert("O campo tipo de produto é obrigatório e deve ser preenchido.");
                 return false;
             } else if (!$('#loja').val()) {
@@ -65,67 +65,76 @@
             $("#headerContent").load("header.html");
         });
     </script>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
 </head>
-<body>
-
-<div id="headerContent"></div>
+<body style="margin: 35px 15px;">
 
 <div class="container">
 
-    <div class="universal-template postagem">
-        <input type="hidden" value="<s:property value='saved'/>" id="isSaved">
-
-        <s:form action="save_postagem" enctype="multipart/form-data" namespace="/">
-            <h2 class="form-contact-heading">Postar uma oferta</h2>
-
-            <div>
-                <h4 class="form-postagem">Escolha uma imagem:</h4>
-                <input type="file" class="form-postagem" name="upload" id="upload"/>
-            </div>
-            <br/>
-            <div>
-                <h4 class="form-postagem">Tipo de produto:</h4>
-                <%--<s:select list="tipos" name="tipoSelecionado" id="tipo"/>--%>
-                <select name="tipoSelecionado" id="tipo">
-                    <option value="-1">Selecione...</option>
-                    <s:iterator value="tipos">
-                        <option value="<s:property value="id" />"><s:property value="tipo"/></option>
-                    </s:iterator>
-                </select>
-                <br/>
-            </div>
-            <br>
-            <div>
-                <h4 class="form-postagem">Descrição:</h4>
-                <textarea rows="3" cols="5" name="descricao"></textarea>
-            </div>
-            <br>
-            <div>
-                <h4 class="form-postagem">Loja:</h4>
-                <select name="lojaSelecionada">
-                    <option value="-1" id="loja">Selecione...</option>
-                    <s:iterator value="lojas">
-                        <option value="<s:property value="id" />"><s:property value="nome"/></option>
-                    </s:iterator>
-                </select><br/>
-            </div>
-            <br/>
-            <div>
-                <h4 class="form-postagem">Marca:</h4>
-                <select name="marcaSelecionada" id="marca">
-                    <option value="-1">Selecione...</option>
-                    <s:iterator value="marcas">
-                        <option value="<s:property value="id" />"><s:property value="nome"/></option>
-                    </s:iterator>
-                </select>
-            </div>
-            <br/>
-            <input type="submit" name="sendFile" value="Enviar">
-        </s:form>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                <small>Adicionar uma postagem</small>
+            </h1>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <s:form action="save_postagem" enctype="multipart/form-data" namespace="/" class="form-horizontal">
+                <input type="hidden" value="<s:property value='saved'/>" id="isSaved">
+
+                <div class="form-group">
+                    <label for="upload">Escolha uma imagem:</label>
+                    <input type="file" name="upload" id="upload">
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo">Tipo de produto:</label>
+                    <select name="tipoSelecionado" id="tipo" class="form-control">
+                        <option value="-1">Selecione...</option>
+                        <s:iterator value="tipos">
+                            <option value="<s:property value="id" />"><s:property value="tipo"/></option>
+                        </s:iterator>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea class="form-control" rows="3" name="descricao" id="descricao"></textarea>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <label for="loja">Loja:</label>
+                    <select name="lojaSelecionada" id="loja" class="form-control">
+                        <option value="-1">Selecione...</option>
+                        <s:iterator value="lojas">
+                            <option value="<s:property value="id" />"><s:property value="nome"/></option>
+                        </s:iterator>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="marca">Marca</label>
+                    <select name="marcaSelecionada" id="marca" class="form-control">
+                        <option value="-1">Selecione...</option>
+                        <s:iterator value="marcas">
+                            <option value="<s:property value="id" />"><s:property value="nome"/></option>
+                        </s:iterator>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Enviar</button>
+            </s:form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Trademark 2015</p>
+            </div>
+        </div>
+    </footer>
 
 </div>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
