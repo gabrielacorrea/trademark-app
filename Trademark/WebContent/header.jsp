@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<script src="resources/js/jquery-1.11.2.min.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">

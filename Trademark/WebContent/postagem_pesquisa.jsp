@@ -14,44 +14,50 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
             <h1 class="page-header">
-                <small>Postagens</small>
+                <small>Pesquisa de postagens</small>
             </h1>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-12">
-            <s:form action="search_postagens" method="teste">
-                <label>Marca:</label>
-                <select name="marcaSelecionada">
-                    <option value="-1">Selecione...</option>
-                    <s:iterator value="listaMarcas">
-                        <option value="<s:property value="id" />"><s:property value="nome"/></option>
-                    </s:iterator>
-                </select><br/>
-                <label>Tipo:</label>
-                <select name="tipoSelecionado">
-                    <option value="-1">Selecione...</option>
-                    <s:iterator value="listaTipoVestuario">
-                        <option value="<s:property value="id" />"><s:property value="tipo"/></option>
-                    </s:iterator>
-                </select><br/>
-                <label>Loja:</label>
-                <select name="lojaSelecionada">
-                    <option value="-1">Selecione...</option>
-                    <s:iterator value="listaLojas">
-                        <option value="<s:property value="id" />"><s:property value="nome"/></option>
-                    </s:iterator>
-                </select><br/>
-                <input type="submit" value="Pesquisar"/>
+        <div class="col-md-12">
+            <s:form action="search_postagens" method="teste" class="form-inline">
+                <div class="form-group">
+                    <label name="marcaSelecionada" for="marcaSelecionada">Marca</label>
+                    <select name="marcaSelecionada" id="marcaSelecionada" class="form-control">
+                        <option value="-1">Selecione...</option>
+                        <s:iterator value="listaMarcas">
+                            <option value="<s:property value="id" />"><s:property value="nome"/></option>
+                        </s:iterator>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label name="tipoSelecionado" for="tipoSelecionado">Tipo:</label>
+                    <select name="tipoSelecionado" id="tipoSelecionado" class="form-control">
+                        <option value="-1">Selecione...</option>
+                        <s:iterator value="listaTipoVestuario">
+                            <option value="<s:property value="id" />"><s:property value="tipo"/></option>
+                        </s:iterator>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label name="lojaSelecionada" for="lojaSelecionada">Loja:</label>
+                    <select name="lojaSelecionada" id="lojaSelecionada" class="form-control">
+                        <option value="-1">Selecione...</option>
+                        <s:iterator value="listaLojas">
+                            <option value="<s:property value="id" />"><s:property value="nome"/></option>
+                        </s:iterator>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Pesquisar</button>
             </s:form>
         </div>
     </div>
 
-    <s:iterator value="postagens">
-        <div class="row">
+    <div class="row">
+        <s:iterator value="postagens">
             <div class="col-md-7">
                 <a href="#" class="thumbnail">
                     <img class="img-responsive img-rounded" src="<s:url action="ImageAction">
@@ -66,8 +72,47 @@
                 <p>Postado em <s:property value="dataFormatada"/> por <s:property value="postadoPor"/></p>
                 <p><s:property value="descricao"/></p>
             </div>
+        </s:iterator>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <ul class="pagination">
+                <li>
+                    <a href="#">&laquo;</a>
+                </li>
+                <li class="active">
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                </li>
+                <li>
+                    <a href="#">5</a>
+                </li>
+                <li>
+                    <a href="#">&raquo;</a>
+                </li>
+            </ul>
         </div>
-    </s:iterator>
+    </div>
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Trademark 2015</p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </footer>
 </div>
 </body>
 </html>
