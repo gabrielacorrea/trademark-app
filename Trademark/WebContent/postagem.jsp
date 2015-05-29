@@ -79,7 +79,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-5">
             <s:form action="save_postagem" enctype="multipart/form-data" namespace="/" class="form-horizontal">
                 <input type="hidden" value="<s:property value='saved'/>" id="isSaved">
 
