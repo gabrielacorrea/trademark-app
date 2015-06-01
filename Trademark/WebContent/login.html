@@ -16,6 +16,20 @@
     <h1>Login</h1>
 </div>
 
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
+
+
+
 <!-- Botão curtir - alterar o data-href para a página a ser curtida -->
 <!-- Fonte:  https://developers.facebook.com/docs/plugins/like-button -->
 <div class="fb-like"
@@ -23,8 +37,7 @@
      data-layout="button_count"
      data-action="like"
      data-show-faces="true"
-     data-share="true"
-     ></div>
+     data-share="true"></div>
 
 </body>
 </html>
