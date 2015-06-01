@@ -12,7 +12,7 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         testAPI();
-        document.getElementById("meuface").style.visibility = "hidden";
+
         console.log('o status=' + response.status);
     } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
@@ -78,5 +78,6 @@ function testAPI() {
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
+        window.location = '../Trademark/postagem_pesquisa.jsp';
     });
 }

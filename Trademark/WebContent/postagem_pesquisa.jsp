@@ -6,6 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <script src="resources/js/sdk_facebook.js"></script>
     <title>Trademark</title>
 </head>
 
@@ -71,6 +72,12 @@
                 <h4>Pode ser encontrado em <s:property value="loja"/></h4>
                 <p>Postado em <s:property value="dataFormatada"/> por <s:property value="postadoPor"/></p>
                 <p><s:property value="descricao"/></p>
+                <div class="fb-like"
+                     data-href="http://www.netshoes.com.br/produto/tenis-asics-gel-nimbus-16-020-0730-978?lid=78%3Arulebanner%3Arc78%3Ac01%3At05%3Ap01%3Ag02%3A7&ppc=1"
+                     data-layout="button_count"
+                     data-action="like"
+                     data-show-faces="true"
+                     data-share="true"></div>
             </div>
         </s:iterator>
     </div>

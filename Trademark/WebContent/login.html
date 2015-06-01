@@ -1,10 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="resources/js/sdk_facebook.js"></script>
 
     <title>TradeMark - Login</title>
 </head>
@@ -21,21 +17,13 @@
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
-<div id="login_button">
-    <fb:login-button id="meuface"
-            scope="public_profile,email"
-            onlogin="checkLoginState();">
-    </fb:login-button>
-</div>
 
-<div id="status">
-</div>
 
 
 <!-- Botão curtir - alterar o data-href para a página a ser curtida -->
 <!-- Fonte:  https://developers.facebook.com/docs/plugins/like-button -->
 <div class="fb-like"
-     data-href="http://www.gap.com/browse/product.do?cid=1032844&amp;vid=1&amp;pid=516042012"
+     data-href="http://localhost:8081/Trademark"
      data-layout="button_count"
      data-action="like"
      data-show-faces="true"
