@@ -78,6 +78,6 @@ function testAPI() {
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
-        window.location = '../Trademark/postagem_pesquisa.jsp';
+        window.location = '../Trademark/open_postagens';
     });
 }
