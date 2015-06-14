@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
@@ -13,7 +13,7 @@
 <div class="container">
 
     <div class="universal-template">
-        <h1>Bem-vindo ao Trademark</h1>
+        <h1>Vamos começar!</h1>
 
         <div id="login_button">
             <fb:login-button id="meuface"
