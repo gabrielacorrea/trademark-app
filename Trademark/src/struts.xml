@@ -15,25 +15,25 @@
 
         <action name="open_postagens" class="com.trademark.action.SearchPostsAction"
                 method="open">
-            <result name="success">/postagem_pesquisa.jsp</result>
+            <result name="success">/pesquisa_postagem.jsp</result>
         </action>
 
         <action name="save_postagem" class="com.trademark.action.UploadAction" method="save">
-            <result name="success">/postagem.jsp</result>
+            <result name="success">/nova_postagem.jsp</result>
         </action>
 
         <action name="open_postagem" class="com.trademark.action.UploadAction" method="open">
-            <result name="success">/postagem.jsp</result>
+            <result name="success">/nova_postagem.jsp</result>
         </action>
 
         <action name="selectLojas"
                 class="com.trademark.bean.LojaBean" method="mostraLojas">
-            <result name="none">/postagem.jsp</result>
+            <result name="none">/nova_postagem.jsp</result>
         </action>
 
         <action name="search_postagens" class="com.trademark.action.SearchPostsAction"
                 method="search">
-            <result name="success">/postagem_pesquisa.jsp</result>
+            <result name="success">/pesquisa_postagem.jsp</result>
         </action>
 
         <action name="ImageAction" class="com.trademark.action.ImageAction"
