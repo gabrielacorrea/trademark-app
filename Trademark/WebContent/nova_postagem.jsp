@@ -13,6 +13,7 @@
             if ($('#isSaved').val() == "true") {
                 alert("Imagem salva com sucesso!");
             }
+
         });
 
         $(document).submit(function () {
@@ -40,6 +41,9 @@
                 alert("O campo marca é obrigatório e deve ser preenchido");
                 return false;
             }
+
+            alert($('#usuarioNome').val());
+            //return false;
         });
 
         function invalidExtension(file) {
@@ -83,8 +87,8 @@
             <s:form action="save_postagem" enctype="multipart/form-data" namespace="/" class="form-horizontal">
                 <input type="hidden" value="<s:property value='saved'/>" id="isSaved">
 
-                <input type="hidden" name="usuarioNome" id="usuarioNome" value="Gabriela Corrêa">
-                <input type="hidden" name="usuarioEmail" id="usuarioEmail" value="gabriela01sc@gmail.com">
+                <input type="hidden" name="usuarioNome" id="usuarioNome" value="q">
+                <input type="hidden" name="usuarioEmail" id="usuarioEmail" value="q">
 
                 <div class="form-group">
                     <label for="upload">Escolha uma imagem:</label>
