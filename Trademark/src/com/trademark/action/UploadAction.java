@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.trademark.bean.LojaBean;
 import com.trademark.bean.MarcaBean;
 import com.trademark.bean.TipoVestuarioBean;
+import com.trademark.bean.UsuarioBean;
 import com.trademark.dao.LojaDAO;
 import com.trademark.dao.MarcaDAO;
 import com.trademark.dao.PostagemDao;
@@ -20,6 +21,32 @@ public class UploadAction extends ActionSupport {
     private String contentType;
     private String filename;
     private final static String PATH_USER = "/opt/Trademark/user";
+    private List<LojaBean> lojas;
+    private List<TipoVestuarioBean> tipos;
+    private int marcaSelecionada;
+    private int lojaSelecionada;
+    private int tipoSelecionado;
+    private boolean saved = false;
+    private String descricao;
+    private String tipoProduto;
+    private String usuarioNome;
+    private String usuarioEmail;
+
+    public String getUsuarioNome() {
+        return usuarioNome;
+    }
+
+    public void setUsuarioNome(String usuarioNome) {
+        this.usuarioNome = usuarioNome;
+    }
+
+    public String getUsuarioEmail() {
+        return usuarioEmail;
+    }
+
+    public void setUsuarioEmail(String usuarioEmail) {
+        this.usuarioEmail = usuarioEmail;
+    }
 
     public List<MarcaBean> getMarcas() {
         return marcas;
@@ -39,15 +66,6 @@ public class UploadAction extends ActionSupport {
         this.lojas = lojas;
     }
 
-    private List<LojaBean> lojas;
-    private List<TipoVestuarioBean> tipos;
-    private int marcaSelecionada;
-    private int lojaSelecionada;
-    private int tipoSelecionado;
-    private boolean saved = false;
-    private String descricao;
-    private String tipoProduto;
-
     public String open() {
         montarSelects();
         return SUCCESS;
@@ -62,7 +80,12 @@ public class UploadAction extends ActionSupport {
     }
 
     public String save() {
+        UsuarioBean usuario = new UsuarioBean();
+        usuario.setNome(this.usuarioNome);
+        usuario.setEmail(this.usuarioEmail);
+
         String path = "";
+
         int idUsuario = 1;
 
         if (!existeDiretorioParaUsuario()) {
@@ -75,8 +98,7 @@ public class UploadAction extends ActionSupport {
         file.renameTo(dest);
 
         setSaved(true);
-        System.out.println(dest.getPath());
-        dao.inserePostagem(this.descricao, dest.getPath(), this.tipoSelecionado, this.lojaSelecionada, this.marcaSelecionada);
+        dao.inserePostagem(this.descricao, dest.getPath(), this.tipoSelecionado, this.lojaSelecionada, this.marcaSelecionada, usuario);
         return SUCCESS;
     }
 

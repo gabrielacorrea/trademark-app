@@ -3,6 +3,7 @@ package com.trademark.dao;
 import com.trademark.bean.LojaBean;
 import com.trademark.bean.MarcaBean;
 import com.trademark.bean.PostagemBean;
+import com.trademark.bean.UsuarioBean;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -178,14 +179,48 @@ public class PostagemDao {
         return marcas;
     }
 
-    public void inserePostagem(String descricao, String imagem, int tipoProduto, int loja, int marca) {
+    public int pesquisaUsuario(String nome, String email) {
         Connection connection = null;
+        int idUsuario = 0;
 
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
+            String sql = "Select id from usuarios where nome = ? and email = ?";
+            PreparedStatement prepare = connection.prepareStatement(sql);
+            prepare.setString(1, nome);
+            prepare.setString(2, email);
+
+            ResultSet rs = prepare.executeQuery();
+
+            if (rs.next()) {
+                idUsuario = rs.getInt("id");
+            } else {
+                insereUsuario(nome, email);
+                idUsuario = pesquisaUsuario(nome, email);
+            }
+
+            rs.close();
+            prepare.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return idUsuario;
+    }
+
+    public void inserePostagem(String descricao, String imagem, int tipoProduto, int loja, int marca, UsuarioBean usuario) {
+        Connection connection = null;
+
+        try {
+            int idUsuario = pesquisaUsuario(usuario.getNome(), usuario.getEmail());
+
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
             String sqlInsert = "insert into postagens (id, data_inicial, descricao, imagem, tipo_vestuario, id_loja, id_marca, id_usuario) " +
-            "values(nextval('id_postagens'), current_timestamp, ?, ? , ?, ?, ?, 1)";
+                    "values(nextval('id_postagens'), current_timestamp, ?, ? , ?, ?, ?, ?)";
 
             PreparedStatement stmt = connection.prepareStatement(sqlInsert);
             stmt.setString(1, descricao);
@@ -193,6 +228,7 @@ public class PostagemDao {
             stmt.setInt(3, tipoProduto);
             stmt.setInt(4, loja);
             stmt.setInt(5, marca);
+            stmt.setInt(6, idUsuario);
 
             stmt.execute();
             stmt.close();
@@ -203,4 +239,28 @@ public class PostagemDao {
             e.printStackTrace();
         }
     }
+
+    public void insereUsuario(String nome, String email) {
+        Connection connection = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
+            String sqlInsert = "insert into usuarios (id, nome, email, senha) " +
+                    "values(nextval('id_usuarios'), ? , ?, 'senha')";
+
+            PreparedStatement stmt = connection.prepareStatement(sqlInsert);
+            stmt.setString(1, nome);
+            stmt.setString(2, email);
+
+            stmt.execute();
+            stmt.close();
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

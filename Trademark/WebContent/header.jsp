@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <script src="resources/js/jquery-1.11.2.min.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -17,6 +18,9 @@
                 <li><a href="<s:url action='open_postagem'/>">Nova postagem</a></li>
                 <li><a href="aboutus.html">Sobre</a></li>
                 <li><a href="contact.html">Contato</a></li>
+                <li></li>
+                <li></li>
+                <li><a href="#"><h3 id="usuario"></h3></a></li>
             </ul>
         </div>
     </div>
