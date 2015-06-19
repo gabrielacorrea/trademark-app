@@ -14,6 +14,7 @@ public class PostagemBean {
     private String postadoPor;
     private String marca;
     private String loja;
+    private double preco;
 
     public void setId(int id) {
         this.id = id;
@@ -102,4 +103,12 @@ public class PostagemBean {
     public void setLoja(String loja) {
         this.loja = loja;
     }
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
 }

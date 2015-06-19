@@ -21,7 +21,7 @@ public class PostagemDao {
 
             Statement st = connection.createStatement();
 
-            String sql = "SELECT a.data_inicial, a.descricao, a.imagem,"
+            String sql = "SELECT a.data_inicial, a.descricao, a.imagem, a.preco,"
                     + " b.nome AS marca,"
                     + " c.nome AS loja,"
                     + " d.nome AS postado_por,"
@@ -31,7 +31,7 @@ public class PostagemDao {
                     + " JOIN lojas c ON a.id_loja = c.id"
                     + " JOIN usuarios d ON a.id_usuario = d.id"
                     + " JOIN tipo_vestuario e on a.tipo_vestuario = e.id"
-                    + " ORDER BY data_inicial desc"
+                    + " ORDER BY data_inicial desc, preco asc"
                     + " LIMIT 10";
 
             ResultSet rs = st.executeQuery(sql);
@@ -45,6 +45,7 @@ public class PostagemDao {
                 bean.setDataInicial(rs.getTimestamp("data_inicial"));
                 bean.setDescricao(rs.getString("descricao"));
                 bean.setImgPath(rs.getString("imagem"));
+                bean.setPreco(rs.getDouble("preco"));
                 list.add(bean);
             }
 
@@ -60,7 +61,7 @@ public class PostagemDao {
 
     }
 
-    public ArrayList<PostagemBean> pesquisarComFiltros(int marca, int tipo, int loja) {
+    public ArrayList<PostagemBean> pesquisarComFiltros(int marca, int tipo, int loja, double preco) {
         Connection connection = null;
         ArrayList<PostagemBean> postagens = new ArrayList<PostagemBean>();
         try {
@@ -71,7 +72,7 @@ public class PostagemDao {
 
             Statement st = connection.createStatement();
 
-            String sql = "SELECT a.data_inicial, a.descricao, a.imagem,"
+            String sql = "SELECT a.data_inicial, a.descricao, a.imagem, a.preco,"
                     + " b.nome AS marca,"
                     + " c.nome AS loja,"
                     + " d.nome AS postado_por,"
@@ -92,6 +93,9 @@ public class PostagemDao {
             if (tipo != -1) {
                 sql = sql + " and a.tipo_vestuario = " + tipo;
             }
+            if(preco > 0){
+            	sql = sql + " and a.preco >= " + preco;
+            }
 
             ResultSet rs = st.executeQuery(sql);
 
@@ -104,6 +108,7 @@ public class PostagemDao {
                 bean.setDataInicial(rs.getTimestamp("data_inicial"));
                 bean.setDescricao(rs.getString("descricao"));
                 bean.setImgPath(rs.getString("imagem"));
+                bean.setPreco(rs.getDouble("preco"));
                 postagens.add(bean);
             }
 
@@ -211,7 +216,8 @@ public class PostagemDao {
         return idUsuario;
     }
 
-    public void inserePostagem(String descricao, String imagem, int tipoProduto, int loja, int marca, UsuarioBean usuario) {
+    public void inserePostagem(String descricao, String imagem, int tipoProduto, int loja, int marca, 
+    		UsuarioBean usuario, double preco) {
         Connection connection = null;
 
         try {
@@ -219,8 +225,9 @@ public class PostagemDao {
 
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/trademark_db", "postgres", "112233");
-            String sqlInsert = "insert into postagens (id, data_inicial, descricao, imagem, tipo_vestuario, id_loja, id_marca, id_usuario) " +
-                    "values(nextval('id_postagens'), current_timestamp, ?, ? , ?, ?, ?, ?)";
+            String sqlInsert = "insert into postagens "
+            		+ "(id, data_inicial, descricao, imagem, tipo_vestuario, id_loja, id_marca, id_usuario, preco) " +
+                    "values(nextval('id_postagens'), current_timestamp, ?, ? , ?, ?, ?, ?, ?)";
 
             PreparedStatement stmt = connection.prepareStatement(sqlInsert);
             stmt.setString(1, descricao);
@@ -229,6 +236,7 @@ public class PostagemDao {
             stmt.setInt(4, loja);
             stmt.setInt(5, marca);
             stmt.setInt(6, idUsuario);
+            stmt.setDouble(7, preco);
 
             stmt.execute();
             stmt.close();

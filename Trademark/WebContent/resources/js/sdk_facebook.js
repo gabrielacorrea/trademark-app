@@ -72,16 +72,7 @@ window.fbAsyncInit = function () {
 function testAPI() {
     FB.api('/me', function (response) {
         document.getElementById('usuario').innerHTML = response.name;
-        document.getElementById('usuarioNome').value = response.name;
-        document.getElementById('usuarioEmail').value = response.email;
         document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
         window.location = '../Trademark/open_postagens';
-    });
-}
-
-
-function getUser() {
-    FB.api('/me', function (response) {
-        document.getElementById('usuarioNome').innerHTML = response.name;
     });
 }

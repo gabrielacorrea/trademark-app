@@ -31,6 +31,7 @@ public class UploadAction extends ActionSupport {
     private String tipoProduto;
     private String usuarioNome;
     private String usuarioEmail;
+    private double preco;
 
     public String getUsuarioNome() {
         return usuarioNome;
@@ -98,7 +99,8 @@ public class UploadAction extends ActionSupport {
         file.renameTo(dest);
 
         setSaved(true);
-        dao.inserePostagem(this.descricao, dest.getPath(), this.tipoSelecionado, this.lojaSelecionada, this.marcaSelecionada, usuario);
+        dao.inserePostagem(this.descricao, dest.getPath(), 
+        		this.tipoSelecionado, this.lojaSelecionada, this.marcaSelecionada, usuario, this.preco);
         return SUCCESS;
     }
 
@@ -190,6 +192,14 @@ public class UploadAction extends ActionSupport {
     public int getTipoSelecionado() {
         return tipoSelecionado;
     }
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
 
 
 }

@@ -1,6 +1,2 @@
-Trademark/target/
-.idea/
-.idea/workspace.xml
-Trademark.iml
-lib/
-target/
+/build
+/target

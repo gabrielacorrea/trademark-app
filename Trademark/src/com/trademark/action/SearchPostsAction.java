@@ -25,6 +25,7 @@ public class SearchPostsAction extends ActionSupport {
     private int marcaSelecionada;
     private int tipoSelecionado;
     private int lojaSelecionada;
+    private double preco;
 
     public String open() {
         // Pesquisa por todas as postagens.
@@ -44,7 +45,7 @@ public class SearchPostsAction extends ActionSupport {
 
     public String search() {
         PostagemDao dao = new PostagemDao();
-        ArrayList<PostagemBean> list = dao.pesquisarComFiltros(marcaSelecionada, tipoSelecionado, lojaSelecionada);
+        ArrayList<PostagemBean> list = dao.pesquisarComFiltros(marcaSelecionada, tipoSelecionado, lojaSelecionada, preco);
         setPostagens(formatarData(list));
 
         montarSelects();
@@ -115,4 +116,12 @@ public class SearchPostsAction extends ActionSupport {
     public void setLojaSelecionada(int lojaSelecionada) {
         this.lojaSelecionada = lojaSelecionada;
     }
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
 }

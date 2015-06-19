@@ -51,6 +51,11 @@
                         </s:iterator>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="preco">Preco:</label>
+                    <input type="text" name="preco" onkeyup='if (isNaN(this.value)) {this.value = ""}'/>
+                </div>
+                
                 <button type="submit" class="btn btn-default">Pesquisar</button>
             </s:form>
         </div>
@@ -67,7 +72,7 @@
                 </a>
             </div>
             <div class="col-md-5">
-                <h3><s:property value="tipoVestuario"/> - <s:property value="marca"/></h3>
+                <h3><s:property value="tipoVestuario"/> - <s:property value="marca"/> - R$ <s:property value="preco"/></h3>
                 <h4>Pode ser encontrado em <s:property value="loja"/></h4>
 
                 <p>Postado em <s:property value="dataFormatada"/> por <s:property value="postadoPor"/></p>
