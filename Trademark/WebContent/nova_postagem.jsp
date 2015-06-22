@@ -49,10 +49,19 @@
                 case "jpeg" :
                     valid = false;
                     break;
+                case "JPEG" :
+                    valid = false;
+                    break;
                 case "jpg" :
                     valid = false;
                     break;
+                case "JPG" :
+                    valid = false;
+                    break;
                 case "png" :
+                    valid = false;
+                    break;
+                case "PNG" :
                     valid = false;
                     break;
                 default:
