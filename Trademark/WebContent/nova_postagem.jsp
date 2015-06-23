@@ -10,12 +10,15 @@
     <title>Trademark</title>
     <script type="text/javascript">
         $(document).ready(function () {
+
             if ($('#isSaved').val() == "true") {
                 alert("Imagem salva com sucesso!");
             }
+
         });
 
         $(document).submit(function () {
+            $('#usuarioNome').val($('#nome').val());
             var validate = true;
             if (!$('#upload').val()) {
                 alert("Escolha uma imagem!");
@@ -92,8 +95,8 @@
             <s:form action="save_postagem" enctype="multipart/form-data" namespace="/" class="form-horizontal">
                 <input type="hidden" value="<s:property value='saved'/>" id="isSaved">
 
-                <input type="hidden" name="usuarioNome" id="usuarioNome" value="Gabriela Corrêa">
-                <input type="hidden" name="usuarioEmail" id="usuarioEmail" value="gabriela01sc@gmail.com">
+                <input type="hidden" name="usuarioNome" id="usuarioNome" value="">
+                <input type="hidden" name="usuarioEmail" id="usuarioEmail" value="">
 
                 <div class="form-group">
                     <label for="upload">Escolha uma imagem:</label>

@@ -21,6 +21,8 @@
                 <li></li>
                 <li></li>
                 <li><a href="#"><h3 id="usuario"></h3></a></li>
+                <input type="hidden" name="nome" id="nome" value="">
+                <input type="hidden" name="email" id="email" value="">
             </ul>
         </div>
     </div>
